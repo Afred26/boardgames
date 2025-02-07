@@ -82,7 +82,7 @@ func (board Board) GetDiagUpRight(col int) []string {
 
 	if col > -l && col < 0 {
 		for i := 0; i-col < l; i++ {
-			result = append(result, board[col-i+2][i])
+			result = append(result, board[col-i+l-1][i])
 
 		}
 	} else {
