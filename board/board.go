@@ -31,11 +31,13 @@ func (board Board) GetRow(row int) []string {
 // Liefert die col-te Spalte des Spielfelds.
 // Liefert eine leere Liste, falls die Spalte nicht existiert.
 func (board Board) GetColumn(col int) []string {
-	if col < 0 || col >= len(board[0]) {
+	if col < 0 || col >= len(board) {
 		return []string{}
 	}
-	result := []string{}
-	// TODO
+	result := make([]string, len(board))
+	for i := 0; i < len(board); i++ {
+		result[i] = board[i][col]
+	}
 	return result
 }
 
@@ -44,8 +46,25 @@ func (board Board) GetColumn(col int) []string {
 // und die von dort aus nach rechts unten verläuft.
 // Für ungültige Spaltennummern wird ggf. eine Teil-Diagonale geliefert.
 func (board Board) GetDiagDownRight(col int) []string {
+	if col < -len(board[0])+1 || col >= len(board[0]) {
+		return []string{}
+	}
+
 	result := []string{}
-	// TODO
+
+	if col > -len(board[0]) && col < 0 {
+		for i := 0; i-col < len(board); i++ {
+			result = append(result, board[i-col][i])
+
+		}
+	} else {
+
+		for i := 0; i+col < len(board); i++ {
+			result = append(result, board[i][col+i])
+
+		}
+
+	}
 	return result
 }
 
@@ -54,7 +73,25 @@ func (board Board) GetDiagDownRight(col int) []string {
 // und die von dort aus nach rechts oben verläuft.
 // Für ungültige Spaltennummern wird ggf. eine Teil-Diagonale geliefert.
 func (board Board) GetDiagUpRight(col int) []string {
+	l := len(board[0])
+	if col < -l+1 || col >= l {
+		return []string{}
+	}
+
 	result := []string{}
-	// TODO
+
+	if col > -l && col < 0 {
+		for i := 0; i-col < l; i++ {
+			result = append(result, board[col-i+2][i])
+
+		}
+	} else {
+
+		for i := 0; i+col < l; i++ {
+			result = append(result, board[l-i-1][col+i])
+
+		}
+
+	}
 	return result
 }
