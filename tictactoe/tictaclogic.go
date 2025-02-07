@@ -6,7 +6,20 @@ import "boardgames/board"
 // das einen Spieler repräsentiert (meist "X" oder "O").
 // Liefert true, falls dieser Spieler gewonnen hat.
 func PlayerWins(b board.Board, player string) bool {
-	return false
+	result := false
+	for i := range b {
+		if b.RowContainsOnly(i, player) {
+			result = true
+		} else if b.ColumnContainsOnly(i, player) {
+			result = true
+		} else if b.DiagDownRightContainsOnly(player) {
+			result = true
+		} else if b.DiagUpRightContainsOnly(player) {
+			result = true
+		}
+
+	}
+	return result
 }
 
 // PlayerAllowed erwartet ein Spielfeld und eine Position
