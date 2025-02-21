@@ -16,6 +16,8 @@ func main() {
 // Versucht, das Spiel ab Zeile row zu lösen.
 // Liefert true, falls dies gelingt und setzt die entsprechenden Damen.
 func SolveQueens(b board.Board, row int) bool {
-	// TODO
+	if row == 0 {
+		return true
+	}
 	return false
 }

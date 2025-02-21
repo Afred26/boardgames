@@ -46,13 +46,14 @@ func (board Board) GetColumn(col int) []string {
 // und die von dort aus nach rechts unten verläuft.
 // Für ungültige Spaltennummern wird ggf. eine Teil-Diagonale geliefert.
 func (board Board) GetDiagDownRight(col int) []string {
-	if col < -len(board[0])+1 || col >= len(board[0]) {
+	l := len(board[0])
+	if col < -l+1 || col >= l {
 		return []string{}
 	}
 
 	result := []string{}
 
-	if col > -len(board[0]) && col < 0 {
+	if col > -l && col < 0 {
 		for i := 0; i-col < len(board); i++ {
 			result = append(result, board[i-col][i])
 
